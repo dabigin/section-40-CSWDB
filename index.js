@@ -5,6 +5,21 @@ const morgan = require('morgan');
 
 
 app.use(morgan('common'))
+app.use((req, res, next) => {
+    console.log("THIS IS MY FIRST MIDDLEWARE!!!")
+    return next();
+    console.log("THIS IS MY FIRST MIDDLEWARE - AFTER CALLING NEXT()")
+})
+
+app.use((req, rest, next) => {
+    console.log("THIS IS MY SECOND MIDDLEWARE!!!")
+    return next()
+})
+
+app.use((req, rest, next) => {
+    console.log("THIS IS MY THIRD MIDDLEWARE!!!")
+    return next()
+})
 
 app.get('/', (req, res) => {
     res.send('HOME PAGE!')
